@@ -1,129 +1,343 @@
-%-------------------------------------------
-% Resume in LuaLatex
-% Author: Kumar Pallav
-% (Works with Overleaf)
-%-------------------------------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Deedy - One Page Two Column Resume
+% LaTeX Template
+% Version 1.2 (16/9/2014)
+%
+% Original author:
+% Debarghya Das (http://debarghyadas.com)
+%
+% Original repository:
+% https://github.com/deedydas/Deedy-Resume
+%
+% IMPORTANT: THIS TEMPLATE NEEDS TO BE COMPILED WITH XeLaTeX
+%
+% This template uses several fonts not included with Windows/Linux by
+% default. If you get compilation errors saying a font is missing, find the line
+% on which the font is used and either change it to a font included with your
+% operating system or comment the line out to use the default font.
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+% TODO:
+% 1. Integrate biber/bibtex for article citation under publications.
+% 2. Figure out a smoother way for the document to flow onto the next page.
+% 3. Add styling information for a "Projects/Hacks" section.
+% 4. Add location/address information
+% 5. Merge OpenFont and MacFonts as a single sty with options.
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% CHANGELOG:
+% v1.1:
+% 1. Fixed several compilation bugs with \renewcommand
+% 2. Got Open-source fonts (Windows/Linux support)
+% 3. Added Last Updated
+% 4. Move Title styling into .sty
+% 5. Commented .sty file.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Known Issues:
+% 1. Overflows onto second page if any column's contents are more than the
+% vertical limit
+% 2. Hacky space on the first bullet point on the second column.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\documentclass[letterpaper,11pt]{article}
 
-\usepackage{latexsym}
-\usepackage[empty]{fullpage}
-\usepackage{titlesec}
-\usepackage{marvosym}
-\usepackage[usenames,dvipsnames]{color}
-\usepackage{verbatim}
-\usepackage{enumitem}
+\documentclass[]{deedy-resume-openfont}
 \usepackage{fancyhdr}
-
-\usepackage[T1]{fontenc}
-\usepackage{Alegreya} %% Option 'black' gives heavier bold face 
-\renewcommand*\oldstylenums[1]{{\AlegreyaOsF #1}}
-
-\RequirePackage{luatex85}
-\usepackage{pdfcomment}
-\usepackage{luacode}
-
+ 
 \pagestyle{fancy}
-\fancyhf{} % clear all header and footer fields
-\fancyfoot{}
-\renewcommand{\headrulewidth}{0pt}
-\renewcommand{\footrulewidth}{0pt}
-
-% Adjust margins
-%-------------------------------------------
-\addtolength{\oddsidemargin}{-0.475in}
-\addtolength{\evensidemargin}{-0.375in}
-\addtolength{\textwidth}{1in}
-\addtolength{\topmargin}{-.5in}
-\addtolength{\textheight}{1.0in}
-
-\urlstyle{same}
-
-\raggedright
-\setlength{\tabcolsep}{0in}
-
-% Sections formatting
-%-------------------------------------------
-\titleformat{\section}{
-  \vspace{-4pt}\scshape\raggedright\large
-}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
-
-% Custom commands
-%-------------------------------------------
-\definecolor{light-gray}{gray}{0.3}
-\newcommand{\resumeItem}[3]{
-  \item{
-    \textbf{#1} \ifthenelse{\equal{#3}{}}{}{\textcolor{light-gray}{\scriptsize\texttt{#3}}} {: \small #2 \vspace{-2pt}}
-  }
-}
-
-\newcommand{\resumeEduEntry}[4]{
-  \vspace{-1pt}\item
-    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
-      \textbf{#1} & #2 \\
-      \textit{\small\textcolor{light-gray}{#3}} & \textit{\small\textcolor{light-gray}{#4}} \\
-    \end{tabular*}\vspace{-5pt}
-}
-
-\newcommand{\resumeExpEntry}[5]{
-  \vspace{-1pt}\item
-    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
-      \textbf{#1} & #2 \\
-      \textit{\small\textcolor{light-gray}{#3 $\cdot$ #4}} & \textit{\small\textcolor{light-gray}{#5}} \\
-    \end{tabular*}\vspace{-5pt}
-}
-
-\newcommand{\resumeSubItem}[3]{\resumeItem{#1}{#2}{#3}\vspace{-4pt}}
-
-\renewcommand{\labelitemii}{$\circ$}
-
-\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=*,label={}]}
-\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
-\newcommand{\resumeItemListStart}{\setlist{rightmargin=10pt}\begin{itemize}}
-\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
-
+\fancyhf{}
+ 
 \begin{document}
 
-% Load lua script
-%-------------------------------------------
-\begin{luacode}
-require("_lua/parser.lua")
-\end{luacode}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%     LAST UPDATED DATE
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\lastupdated
 
-% Print Heading
-%-------------------------------------------
-\directlua{printHeading("_data/personal.json")}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%     TITLE NAME
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\namesection{Amey}{Pandit}{ \urlstyle{same}\href{http://ameypandit.me}{ameypandit.me} | \href{https://www.linkedin.com/in/ameypandit/}{linkedin.com/in/ameypandit} \\
+\href{mailto:amey.pandit01@gmail.com}{amey.pandit01@gmail.com} | +91 97021 53712 | \href{https://github.com/panditamey}{github.com/panditamey}
+}
 
-% Print Education
-%-------------------------------------------
-\section{Education}
-  \resumeSubHeadingListStart
-	\directlua{printEduItems("_data/edu.json")}
-  \resumeSubHeadingListEnd
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%     COLUMN ONE
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Print Experience
-%-------------------------------------------
+\begin{minipage}[t]{0.33\textwidth} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     EDUCATION
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Education} 
+\hfill
+
+\subsection{Mumbai University}
+\descript{BE in Information Technology}
+\location{Atharva College of Engineering}
+\location{2020 - 2024 (Expected) | 9.7 CPGA }
+\sectionsep
+\hfill
+
+\subsection{Sathaye College , Mumbai}
+\descript{HSC (PCMB)}
+\location{03/2018 - 03/2020  |   71.08\%}
+\sectionsep
+\hfill
+
+\subsection{St . Xavier's High School}
+\descript{SSC}
+\location{2018|  88.60\%}
+\sectionsep
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     LINKS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     COURSEWORK
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \section{Coursework}
+% \subsection{Graduate}
+% Advanced Machine Learning \\
+% Open Source Software Engineering \\
+% Advanced Interactive Graphics \\
+% Compilers + Practicum \\
+% Cloud Computing \\
+% Evolutionary Computation \\
+% Defending Computer Networks \\
+% Machine Learning \\
+% \sectionsep
+
+% \subsection{Undergraduate}
+% Information Retrieval \\
+% Operating Systems \\
+% Artificial Intelligence + Practicum \\
+% Functional Programming \\
+% Computer Graphics + Practicum \\
+% {\footnotesize \textit{\textbf{(Research Asst. \& Teaching Asst 2x) }}} \\
+% Unix Tools and Scripting \\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     SKILLS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Skills}
+\hfill
+
+\subsection{Programming}
+\hfill
+
+% \location{Over 5000 lines:}
+% Java \textbullet{}   Shell \textbullet{} Python \textbullet{} Javascript \\
+% OCaml \textbullet{} Matlab \textbullet{} Rails \textbullet{} \LaTeX\ \\ 
+% \location{Over 1000 lines:}
+% C \textbullet{} C++ \textbullet{} CSS \textbullet{} PHP \textbullet{} Assembly \\
+% \location{Familiar:}
+% AS3 \textbullet{} iOS \textbullet{} Android \textbullet{} MySQL
+% \sectionsep
+% \runsubsection{}
+% \hfill
+
+\descript{Languages}
+\hfill
+\vspace{\topsep} % Hacky fix for awkward extra vertical space
+\begin{tightemize}
+\item Java
+\item C \& C++
+\item Python 
+\end{tightemize}
+\sectionsep
+
+\descript{Tools}
+\vspace{\topsep} % Hacky fix for awkward extra vertical space
+\begin{tightemize}
+%  \textbullet{}   Git \& Github \textbullet{} Linux \textbullet{} Android Studio \\
+\item Git
+\item Linux
+\item Android Studio
+\end{tightemize}
+\sectionsep
+
+\descript{Library \& Frameworks}
+\vspace{\topsep} % Hacky fix for awkward extra vertical space
+\begin{tightemize}
+%  \textbullet{}   Node \textbullet{} Flask \textbullet{} Express \\
+\item Node
+\item Flask
+\item Express
+\end{tightemize}
+\sectionsep
+
+
+\descript{Technologies \& Databases}
+\vspace{\topsep} % Hacky fix for awkward extra vertical space
+\begin{tightemize}
+%  \textbullet{}   Node \textbullet{} Flask \textbullet{} Express \\
+\item MongoDB
+\item SQL
+\item Flutter
+\item Firebase
+\end{tightemize}
+\sectionsep
+
+
+\descript{Other}
+\vspace{\topsep} % Hacky fix for awkward extra vertical space
+\begin{tightemize}
+%  \textbullet{}   Node \textbullet{} Flask \textbullet{} Express \\
+\item UI/UX
+\item Sketching
+\item Reading Books
+\end{tightemize}
+\sectionsep
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%     COLUMN TWO
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{minipage} 
+\hfill
+\begin{minipage}[t]{0.66\textwidth} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     EXPERIENCE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section{Experience}
-  \resumeSubHeadingListStart
-  	\directlua{printExpItems("_data/exp.json")}
-  \resumeSubHeadingListEnd
+\runsubsection{Evolution.Co}
+\descript{  Intern | 07/2022 - Present}
+\location{Android Developer | Java | Python  }
+\sectionsep
 
-% Print Projects
-%-------------------------------------------
-\section{\href{https://github.com/pforpallav}{Projects}}
-  \resumeSubHeadingListStart
-    \directlua{printProjItems("_data/proj.json")}
-  \resumeSubHeadingListEnd
-  
-% Print Skills
-%-------------------------------------------
-\section{Programming Skills}
-  \resumeSubHeadingListStart 
-    \item{
-      \textbf{Languages}{: \directlua{printList("_data/personal.json", "languages", "language")}}
-      \hfill
-      \textbf{Technologies}{: \directlua{printList("_data/personal.json", "technologies", "technology")}}
-      }
-  \resumeSubHeadingListEnd
 
-\end{document}
+\runsubsection{Techq Konnect Technologies}
+\descript{  Intern | 10/2021 - 11/2021}
+\location{Android Developer | Java | Android  }
+\vspace{\topsep} % Hacky fix for awkward extra vertical space
+\begin{tightemize}
+\item Worked On Autentication and Networking part Of Some Apps using Node.Js and also with Firebase Backend.
+\item Also worked On Data Storage Modules, serverless backend using Lamba functions, Chat Bot App using DialogFLow.
+\end{tightemize}
+\sectionsep
+
+% \runsubsection{Google}
+% \descript{| Software Engineering Intern }
+% \location{May 2013 – Aug 2013 | Mountain View, CA}
+% \begin{tightemize}
+% \item Worked on the YouTube Captions team, in Javascript and Python to plan, to design and develop the full stack to add and edit Automatic Speech Recognition captions. In production.
+% \item Created a backbone.js-like framework for the Captions editor.
+% \end{tightemize}
+% \sectionsep
+
+% \runsubsection{Phabricator}
+% \descript{| Open Source Contributor \& Team Leader}
+% \location{Jan 2013 – May 2013 | Palo Alto, CA \& Ithaca, NY}
+% \begin{tightemize}
+% \item Phabricator is used daily by Facebook, Dropbox, Quora, Asana and more.
+% \item I created the Meme generator and more in PHP and Shell.
+% \item Led a team from MIT, Cornell, IC London and UHelsinki for the project.
+% \end{tightemize}
+% \sectionsep
+
+
+\section{Research}
+\runsubsection{Diabetic Retinopathy }
+\descript{ | Python | Flutter }
+\location{Nov 2021 – Present | Mumbai}
+Working under Prof.Pranoti Nage on Diabetic Retinopathy Detection by Deep Learning Using Inception V3. Also implemented the same model in Android App Using Tflite and Flutter
+\sectionsep
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     RESEARCH
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% x%%%%%
+
+\section{Community and Other Experience}
+\runsubsection{SMART INDIA HACKATHON}
+\descript{| Team Member}
+% \location{July 2022 – Present }
+With the team of 6 Team Members we worked on Depression Detection Using MRI Scans to develop Computer Aided Diagnosis Model using Support Vector Machine Learning.  Solution Got Selected Under Waitlisted Category. 
+\sectionsep
+
+\runsubsection{E-Yantra, IIT Bombay}
+\descript{| Team Member}
+We worked on Soil Monitoring Bot and We successfully cleared Stage 2.  
+\sectionsep
+ 
+\runsubsection{GDSC ACE}
+\descript{| Lead 2022}
+\sectionsep
+
+\runsubsection{GDSC VJTI}
+\descript{| Team Member}
+Participated in Android Study Jam , Flutter Festival , 30 Days Of Google Cloud Program and other events.
+\sectionsep
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     AWARDS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Projects} 
+% % \begin{tabular}{rll}
+% % 2014	     & top 52/2500  & KPCB Engineering Fellow\\
+% % 2014	     & 1\textsuperscript{st}/50  & Microsoft Coding Competition, Cornell\\
+% % 2013	     & National  & Jump Trading Challenge Finalist\\
+% % 2013     & 7\textsuperscript{th}/120 & CS 3410 Cache Race Bot Tournament  \\
+% % 2012     & 2\textsuperscript{nd}/150 & CS 3110 Biannual Intra-Class Bot Tournament \\
+% % 2011     & National & Indian National Mathematics Olympiad (INMO) Finalist \\
+% % \end{tabular}
+
+\runsubsection{IT CONNECT}
+\descript{Java | Firebase | 09/2021 - Present}
+\vspace{\topsep} % Hacky fix for awkward extra vertical space
+\begin{tightemize}
+\item This is an android app made for our college students of IT branch to share notices , book pdfs, ebooks, timetable and many other notifications.Made Using Java , Firebase and Node Backend.
+\end{tightemize}
+\sectionsep
+
+\runsubsection{Farmer Buddy}
+\descript{Flutter | Node | MongoDB | 09/2021 - Present}
+\vspace{\topsep} % Hacky fix for awkward extra vertical space
+\begin{tightemize}
+\item Built an app for Farmers Where they can buy , sell , ask for donations , Chat with Other Farmers and NGOs , Watch New Farming Techniques with Crop Disease Detection Feature .
+\end{tightemize}
+\sectionsep
+
+\runsubsection{ExploAR}
+\descript{Unity | Sceneform | ARcore | 09/2021 - Present}
+\vspace{\topsep} % Hacky fix for awkward extra vertical space
+\begin{tightemize}
+\item Built an educational app for school students where they can visualize their subjects with the help of AR Technology .
+\end{tightemize}
+\sectionsep
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     PUBLICATIONS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \section{Publications} 
+% \renewcommand\refname{\vskip -1.5em} % Couldn't get this working from the .cls file
+% \bibliographystyle{abbrv}
+% \bibliography{publications}
+% \nocite{*}
+
+\end{minipage} 
+\end{document}  \documentclass[]{article}
